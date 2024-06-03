@@ -2,6 +2,9 @@ package org.aptech.t2208e.entity;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.aptech.t2208e.jpaRepository.annotation.Column;
+import org.aptech.t2208e.jpaRepository.annotation.Entity;
+import org.aptech.t2208e.jpaRepository.annotation.Id;
 
 @Getter
 @Setter
@@ -9,11 +12,17 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity(tableName = "student_table")
 public class Student {
+    @Id(name =  "id") // meaning id : primary key
     private Long id;
+    @Column(columnName = "first_name")
     private String firstName;
+    @Column(columnName = "last_name")
     private String lastName;
+    @Column(columnName = "address")
     private String address;
+    @Column(columnName = "age")
     private int age;
 
     public Long getId() {
