@@ -1,25 +1,17 @@
 package org.aptech.t2208e.repository.impl;
 
 import org.aptech.t2208e.entity.Student;
-import org.aptech.t2208e.repository.StudentRepo;
+import org.aptech.t2208e.repository.StudentRepository;
 import org.aptech.t2208e.utils.ConnectionPool;
-import org.aptech.t2208e.utils.DatabaseHelper;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class StudentRepositoryImpl  implements StudentRepo {
+public class StudentRepositoryImpl  implements StudentRepository {
     private static final String SQL_QUERY_STUDENT_BY_ID = "Select * from student where id  = ?";
 
-    public static void main(String[] args) {
-        StudentRepo studentRepo = new StudentRepositoryImpl();
-        Optional<List<Student>> s = studentRepo.getById("'1' or 0 =0 ");
-        if(s.isPresent()){
-            System.err.println("Student with id 1 : "+ s.get());
-        }
-    }
     @Override
     public Optional<List<Student>> getById(String id) {
 //        Connection connection = DatabaseHelper.getConnection();
