@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1")
 public class StudentController {
@@ -16,5 +18,9 @@ public class StudentController {
     @GetMapping(value = "/student/{studentId}")
     public StudentDto get(@PathVariable Long studentId){
         return studentService.getById(studentId);
+    }
+    @GetMapping(value = "/students")
+    public List<StudentDto> finadall(){
+        return studentService.findAll();
     }
 }

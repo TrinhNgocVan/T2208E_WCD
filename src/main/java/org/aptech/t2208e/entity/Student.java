@@ -12,8 +12,9 @@ import org.aptech.t2208e.jpaRepository.annotation.Id;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(tableName = "student_table")
+@Entity(tableName = "student")
 public class Student {
+
     @Id(name =  "id") // meaning id : primary key
     private Long id;
     @Column(columnName = "first_name")

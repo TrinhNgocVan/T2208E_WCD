@@ -1,13 +1,21 @@
 package org.aptech.t2208e.jpaRepository.main.impl;
 
 import org.aptech.t2208e.jpaRepository.annotation.Entity;
+import org.aptech.t2208e.jpaRepository.consts.SqlQueryConstants;
 import org.aptech.t2208e.jpaRepository.main.JpaExecutor;
+import org.aptech.t2208e.utils.ConnectionPool;
 
 import java.lang.reflect.Field;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-public class JpaExecutorImpl<T> implements JpaExecutor<T> {
+public abstract class JpaExecutorImpl<T> implements JpaExecutor<T> {
     private Class<T> clazz;
     private String  className;
     public String tableName;
@@ -28,16 +36,22 @@ public class JpaExecutorImpl<T> implements JpaExecutor<T> {
         System.err.println(this.tableName);
         System.err.println(this.fields);
     }
+    public abstract List<T> rowMapper(ResultSet rs);
+
 
     @Override
     public List<T> findAll() {
-        String sql  = "select * from %table_name%;";
-        String trueSql  = sql.replace("%table_name%", this.tableName);
-        System.err.println(trueSql);
-
-
-
-        return List.of();
+        ConnectionPool connectionPool = ConnectionPool.getInstance();
+        Connection con = connectionPool.getConnection();
+        String sql  = SqlQueryConstants.SQL_SELECT_ALL.replace("%table_name%", this.tableName);
+        PreparedStatement pt = null;
+        try {
+            pt = con.prepareStatement(sql);
+            ResultSet rs = pt.executeQuery();
+            return rowMapper(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
