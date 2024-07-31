@@ -34,10 +34,6 @@ public class UserSpecification {
     public Specification<User> filterLab1(UserSearchRequestDto criteria){
         return (root, query, cb) -> {
             List<Predicate> predicates = new ArrayList<>();
-            Join<User, Department> departmentRoot = root.join("department");
-            Join<Department, Company> companyRoot = root.join("company");
-
-
             if(!StringUtils.isEmpty(criteria.getUsername())){
                 // menh de : like  , ko phan biet hoa thuong
                 predicates.add( cb.like(cb.upper(root.get("username")),

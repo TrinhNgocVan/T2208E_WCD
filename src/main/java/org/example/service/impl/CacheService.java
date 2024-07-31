@@ -17,24 +17,24 @@ public class CacheService {
     @Autowired
     RedisTemplate redisTemplate;
 
-    @Cacheable(value = "T2208e:dihoc", key = "{'test', #departmentId}", unless = "null")
-    public DepartmentDto getCacheDepartment(long departmentId)
-            throws InterruptedException {
-//        // mock get department from db : select * from department where id  = :id
-        DepartmentDto departmentDto = new DepartmentDto();
-        departmentDto.setId(departmentId);
-        departmentDto.setName("Demo");
-        Thread.sleep(5000);
-        redisTemplate.opsForValue().set("test","test"); // TTL = -1 (no_expire)
-        return departmentDto;
-    }
-    // 1. if update real value  -> update cache (% wrong data)
-    // 2. if update real value  -> clear cache  (100%)
-
-    @CacheEvict(value = "T2208e", key = "{'test', #id}")
-    public DepartmentDto updateDepartment(DepartmentDto department, long id) throws InterruptedException {
-        // update department
-        Thread.sleep(5000);
-        return department;
-    }
+//    @Cacheable(value = "T2208e:dihoc", key = "{'test', #departmentId}", unless = "null")
+//    public DepartmentDto getCacheDepartment(long departmentId)
+//            throws InterruptedException {
+////        // mock get department from db : select * from department where id  = :id
+//        DepartmentDto departmentDto = new DepartmentDto();
+//        departmentDto.setId(departmentId);
+//        departmentDto.setName("Demo");
+//        Thread.sleep(5000);
+//        redisTemplate.opsForValue().set("test","test"); // TTL = -1 (no_expire)
+//        return departmentDto;
+//    }
+//    // 1. if update real value  -> update cache (% wrong data)
+//    // 2. if update real value  -> clear cache  (100%)
+//
+//    @CacheEvict(value = "T2208e", key = "{'test', #id}")
+//    public DepartmentDto updateDepartment(DepartmentDto department, long id) throws InterruptedException {
+//        // update department
+//        Thread.sleep(5000);
+//        return department;
+//    }
 }

@@ -46,7 +46,7 @@ public class User {
     private String updatedBy;
     @Column(name = "updated_time")
     private Date updatedTime;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "department_id" , nullable = true)
     private Department department;
     @Transient

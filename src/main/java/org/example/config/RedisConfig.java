@@ -47,15 +47,15 @@ public class RedisConfig {
         return (builder)->{
             Map<String,RedisCacheConfiguration> configMap  = new HashMap<>();
             configMap.put("T2208e",RedisCacheConfiguration.defaultCacheConfig()
-                           .entryTtl(Duration.ofMinutes(10))
+                           .entryTtl(Duration.ofMinutes(100))
                     .serializeValuesWith(RedisSerializationContext.SerializationPair
                             .fromSerializer(new GenericJackson2JsonRedisSerializer()))
             );
-            configMap.put("T2208e:dihoc",RedisCacheConfiguration.defaultCacheConfig()
-                    .entryTtl(Duration.ofMinutes(15))
-                    .serializeValuesWith(RedisSerializationContext.SerializationPair
-                            .fromSerializer(new GenericJackson2JsonRedisSerializer()))
-            );
+//            configMap.put("T2208e:dihoc",RedisCacheConfiguration.defaultCacheConfig()
+//                    .entryTtl(Duration.ofMinutes(15))
+//                    .serializeValuesWith(RedisSerializationContext.SerializationPair
+//                            .fromSerializer(new GenericJackson2JsonRedisSerializer()))
+//            );
             builder.withInitialCacheConfigurations(configMap);
         };
     }

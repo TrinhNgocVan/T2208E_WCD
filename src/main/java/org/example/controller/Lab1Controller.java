@@ -20,6 +20,6 @@ public class Lab1Controller {
 
     @PostMapping("/users/_search_lab1")
     public ResponseEntity<?> search(@RequestBody UserSearchRequestDto criteria){
-
+        return ResponseEntity.ok(userService.search_lab1(criteria));
     }
 }

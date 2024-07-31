@@ -15,14 +15,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1")
 public class CacheController {
-    @Autowired
-    private CacheService cacheService;
-    @GetMapping("/itemCache")
-    public ResponseEntity<?> get() throws InterruptedException {
-        return ResponseEntity.ok(cacheService.getCacheDepartment(1L));
-    }
-    @GetMapping("/clearCache")
-    public ResponseEntity<?> clearCache() throws InterruptedException {
-        return ResponseEntity.ok(cacheService.updateDepartment(new DepartmentDto(),1L));
-    }
+//    @Autowired
+//    private CacheService cacheService;
+//    @GetMapping("/itemCache")
+//    public ResponseEntity<?> get() throws InterruptedException {
+//        return ResponseEntity.ok(cacheService.getCacheDepartment(1L));
+//    }
+//    @GetMapping("/clearCache")
+//    public ResponseEntity<?> clearCache() throws InterruptedException {
+//        return ResponseEntity.ok(cacheService.updateDepartment(new DepartmentDto(),1L));
+//    }
 }
