@@ -18,12 +18,23 @@ public class Department {
     @Column(name = "name")
     private String name;
     @OneToMany( mappedBy = "department",fetch = FetchType.LAZY
-
-
-
             , cascade = CascadeType.ALL)
     // fetchType  : LAZY (load khi nao chuong trinh goi ) , EAGER (load ngay lap tuc )
     private List<User> users;  // 1 object department have many user inside
+
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id" , nullable = true)
+    private Company company;
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
 
     public long getId() {
         return id;

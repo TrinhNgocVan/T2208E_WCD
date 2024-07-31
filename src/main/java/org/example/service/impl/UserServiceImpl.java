@@ -5,6 +5,7 @@ import jakarta.persistence.PersistenceContext;
 import org.example.config.properties.CommonProperties;
 import org.example.dto.PageDto;
 import org.example.dto.UserDto;
+import org.example.dto.lab1.user.UserSearchRequestDto;
 import org.example.entity.Department;
 import org.example.entity.User;
 import org.example.mapper.UserMapper;
@@ -128,5 +129,18 @@ public class UserServiceImpl implements UserService {
         pageDto.setPageSize(page.getSize());
         pageDto.setTotalPages(page.getTotalPages());
         return pageDto;
+    }
+    @Override
+    public PageDto search_lab1(UserSearchRequestDto criteria) {
+        if(criteria.getPageSize() <= 0 || criteria.getPageNumber() < 0){
+            criteria.setPageNumber(commonProperties.getDefaultPageNumber());
+            criteria.setPageSize(commonProperties.getDefaultPageSize());
+        }
+        Page<User> page = userRepository.findAll(userSpecification.filterLab1(criteria),
+                PageRequest.of(criteria.getPageNumber(),criteria.getPageSize(),
+                        Sort.by("id").ascending()));
+
+
+        return null;
     }
 }
