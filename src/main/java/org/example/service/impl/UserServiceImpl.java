@@ -147,9 +147,6 @@ public class UserServiceImpl implements UserService {
             // not valid
 
         }
-
-
-
         // edit : user must have id
         // user  vs department : user update u.department
         User user  = new User();
@@ -193,7 +190,7 @@ public class UserServiceImpl implements UserService {
         return pageDto;
     }
     // from userId , get from cache
-//    @Cacheable(value = "T2208e", key = "{'userInfo', #userId}", unless = "null")
+    @Cacheable(value = "T2208e", key = "{'userInfo', #userId}")
     public UserSearchResponseDto getUserSearchResponse(long userId, User u){
         UserSearchResponseDto res = new UserSearchResponseDto();
         redisTemplate.opsForValue().set(userId, userId);
