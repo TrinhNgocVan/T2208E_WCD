@@ -9,11 +9,20 @@ public class ViettelPostApiProperties {
     private String baseUrl;
     @Value("${viettelpost.api.login-path}")
     private String loginPath;
+    @Value("${viettelpost.api.get-list-post-office-path}")
+    private String getListPostOfficePath;
     @Value("${viettelpost.api.username}")
     private String username;
     @Value("${viettelpost.api.password}")
     private String password;
 
+    public String getGetListPostOfficePath() {
+        return getListPostOfficePath;
+    }
+
+    public void setGetListPostOfficePath(String getListPostOfficePath) {
+        this.getListPostOfficePath = getListPostOfficePath;
+    }
 
     public String getUsername() {
         return username;
